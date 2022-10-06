@@ -43,5 +43,37 @@ namespace MegaDesk_Ebenal
         {
             return 0;
         }
+
+        public string[] Stringify()
+        {
+            string[] stringQuote =
+            {
+                QuoteDate.ToString(),
+                CustomerName,
+                Desk.Width.ToString(),
+                Desk.Depth.ToString(),
+                Desk.NumberOfDrawers.ToString(),
+                Desk.DeskMaterial.ToString(),
+                DeliveryString(),
+                QuoteAmount.ToString(),
+            };
+            return stringQuote;
+        }
+
+        private string DeliveryString()
+        {
+            switch (DeliveryType)
+            {
+                case DeliveryType.FourteenDay:
+                    return "14 Days";
+                case DeliveryType.SevenDay:
+                    return "7 Days";
+                case DeliveryType.FiveDay:
+                    return "5 days";
+                case DeliveryType.ThreeDay:
+                    return "3 Days";
+            }
+            return "Not Specified";
+        }
     }
 }
