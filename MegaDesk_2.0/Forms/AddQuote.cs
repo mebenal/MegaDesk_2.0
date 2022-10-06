@@ -1,4 +1,5 @@
-﻿using MegaDesk_Ebenal.Forms;
+﻿using MegaDesk_2_0.Classes;
+using MegaDesk_Ebenal.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,23 @@ namespace MegaDesk_Ebenal
         {
             EbenalForm_FormClosed(sender, e);
             Close();
+        }
+
+        private void button_GetQuote_Click(object sender, EventArgs e)
+        {
+            Desk newDesk = new Desk(
+                numericUpDown_Depth.Value,
+                numericUpDown_Width.Value,
+                (DeskMaterials)comboBox_SurfaceMaterial.SelectedItem,
+                (int)numericUpDown_NumberOfDrawers.Value);
+
+            Enum.TryParse<DeliveryType>(comboBox_SurfaceMaterial.SelectedValue.ToString(), out DeliveryType deliveryType);
+            DeskQuote deskQuote = new DeskQuote(
+                textBox_CustomerName.Text,
+                deliveryType,
+                newDesk);
+
+            ManageQuotes.AppendQuote(deskQuote);
         }
     }
 }
