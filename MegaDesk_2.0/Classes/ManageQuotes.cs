@@ -21,6 +21,7 @@ namespace MegaDesk_2_0.Classes
             "Delivery Time",
             "Price",
         };
+
         public static List<DeskQuote> GetQuotes()
         {
             if (!File.Exists(@"./quotes.json"))

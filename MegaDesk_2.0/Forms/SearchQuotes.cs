@@ -25,6 +25,7 @@ namespace MegaDesk_Ebenal
             MaterialComboBox.DataSource = Enum.GetValues(typeof(DeskMaterials));
             MaterialComboBox.SelectedIndex = -1;
         }
+
         private void MaterialComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MaterialComboBox.SelectedIndex < 0)
@@ -32,6 +33,7 @@ namespace MegaDesk_Ebenal
             else
                 SearchQuotes_DisplayData((DeskMaterials)Enum.Parse(typeof(DeskMaterials), MaterialComboBox.Text));
         }
+
         private void SearchQuotes_FormClosed(object sender, FormClosedEventArgs e)
         {
             EbenalForm_FormClosed(sender, e);
