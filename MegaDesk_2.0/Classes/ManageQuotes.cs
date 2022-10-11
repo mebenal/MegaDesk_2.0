@@ -21,6 +21,7 @@ namespace MegaDesk_2_0.Classes
             "Delivery Time",
             "Price",
         };
+
         public static List<DeskQuote> GetQuotes()
         {
             if (!File.Exists(@"./quotes.json"))
@@ -32,11 +33,7 @@ namespace MegaDesk_2_0.Classes
 
         public static void AppendQuote(DeskQuote quote)
         {
-            if(!File.Exists(@"./quotes.json"))
-            {
-                File.Create(@"./quotes.json");
-            }
-            List<DeskQuote> list = GetQuotes() == null ? new List<DeskQuote>() : GetQuotes();
+            List<DeskQuote> list = GetQuotes() ?? new List<DeskQuote>();
             list.Add(quote);
             File.WriteAllText(@"./quotes.json", JsonConvert.SerializeObject(list));
         }

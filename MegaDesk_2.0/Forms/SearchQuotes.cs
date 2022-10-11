@@ -22,30 +22,28 @@ namespace MegaDesk_Ebenal
             InitializeComponent();
 
             MaterialComboBox.DataSource = Enum.GetValues(typeof(DeskMaterials));
-            
-            SearchQuotes_CreateHeaders();
+        
             SearchQuotes_DisplayData();
         }
+
         private void MaterialComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SearchQuotes_CreateHeaders();
             SearchQuotes_DisplayData();
         }
+
         private void SearchQuotes_FormClosed(object sender, FormClosedEventArgs e)
         {
             EbenalForm_FormClosed(sender, e);
         }
 
-        private void SearchQuotes_CreateHeaders()
-        {
-            for (int i = 0; i < ManageQuotes.QuoteHeaders.Length; i++)
-            {
-                dataView.Columns.Add(ManageQuotes.QuoteHeaders[i], ManageQuotes.QuoteHeaders[i]);
-            }
-        }
         private void SearchQuotes_DisplayData()
         {
             dataView.Rows.Clear();
+            dataView.Columns.Clear();
+            foreach (string header in ManageQuotes.QuoteHeaders)
+            {
+                dataView.Columns.Add(header, header);
+            }
             foreach (DeskQuote quote in data)
             {
                 if(quote.Desk.DeskMaterial.ToString() == MaterialComboBox.Text)
