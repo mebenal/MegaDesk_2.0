@@ -32,14 +32,19 @@ namespace MegaDesk_Ebenal
 
         private void ViewAllQuotes_DisplayData()
         {
-            for(int i = 0; i < ManageQuotes.QuoteHeaders.Length; i++)
-            {
-                dataView.Columns.Add(ManageQuotes.QuoteHeaders[i], ManageQuotes.QuoteHeaders[i]);
-            }
-            foreach(DeskQuote quote in data)
-            {
-                dataView.Rows.Add(quote.Stringify());
-            }
+            dataView.DataSource = data
+               .Select((d) => new
+               {
+                   QuoteDate = d.QuoteDate,
+                   CustomerName = d.CustomerName,
+                   Width = d.Desk.Width,
+                   Depth = d.Desk.Depth,
+                   Drawers = d.Desk.NumberOfDrawers,
+                   Material = d.Desk.DeskMaterial,
+                   DeliveryType = d.DeliveryType,
+                   Price = d.QuoteAmount,
+               })
+               .ToList();
         }
     }
 }
