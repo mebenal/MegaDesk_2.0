@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MegaDesk_Ebenal
 {
 
-    enum DeskMaterials
+    public enum DeskMaterials
     {
         Oak = 200,
         Laminate = 100,
@@ -16,7 +16,7 @@ namespace MegaDesk_Ebenal
         Veneer = 125
     }
 
-    internal class Desk
+    public class Desk
     {
         public static readonly int maxWidth = 96;
         public static readonly int minWidth = 24;
@@ -40,6 +40,11 @@ namespace MegaDesk_Ebenal
             Width = width;
             DeskMaterial = deskMaterial;
             NumberOfDrawers = numberOfDrawers;
+        }
+
+        public decimal GetArea()
+        {
+            return Depth * Width;
         }
     }
 }

@@ -40,8 +40,8 @@
             this.numericUpDown_NumberOfDrawers = new System.Windows.Forms.NumericUpDown();
             this.label_SurfaceMaterial = new System.Windows.Forms.Label();
             this.comboBox_SurfaceMaterial = new System.Windows.Forms.ComboBox();
-            this.label_Delivery = new System.Windows.Forms.Label();
-            this.comboBox_Delivery = new System.Windows.Forms.ComboBox();
+            this.label_DeliveryType = new System.Windows.Forms.Label();
+            this.comboBox_DeliveryType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button_GetQuote = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
@@ -200,24 +200,24 @@
             this.comboBox_SurfaceMaterial.Size = new System.Drawing.Size(150, 28);
             this.comboBox_SurfaceMaterial.TabIndex = 7;
             // 
-            // label_Delivery
+            // label_DeliveryType
             // 
-            this.label_Delivery.AutoSize = true;
-            this.label_Delivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_Delivery.Location = new System.Drawing.Point(401, 215);
-            this.label_Delivery.Name = "label_Delivery";
-            this.label_Delivery.Size = new System.Drawing.Size(68, 20);
-            this.label_Delivery.TabIndex = 8;
-            this.label_Delivery.Text = "Delivery:";
+            this.label_DeliveryType.AutoSize = true;
+            this.label_DeliveryType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_DeliveryType.Location = new System.Drawing.Point(401, 215);
+            this.label_DeliveryType.Name = "label_DeliveryType";
+            this.label_DeliveryType.Size = new System.Drawing.Size(68, 20);
+            this.label_DeliveryType.TabIndex = 8;
+            this.label_DeliveryType.Text = "Delivery:";
             // 
-            // comboBox_Delivery
+            // comboBox_DeliveryType
             // 
-            this.comboBox_Delivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.comboBox_Delivery.FormattingEnabled = true;
-            this.comboBox_Delivery.Location = new System.Drawing.Point(475, 212);
-            this.comboBox_Delivery.Name = "comboBox_Delivery";
-            this.comboBox_Delivery.Size = new System.Drawing.Size(150, 28);
-            this.comboBox_Delivery.TabIndex = 9;
+            this.comboBox_DeliveryType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.comboBox_DeliveryType.FormattingEnabled = true;
+            this.comboBox_DeliveryType.Location = new System.Drawing.Point(475, 212);
+            this.comboBox_DeliveryType.Name = "comboBox_DeliveryType";
+            this.comboBox_DeliveryType.Size = new System.Drawing.Size(150, 28);
+            this.comboBox_DeliveryType.TabIndex = 9;
             // 
             // label2
             // 
@@ -258,8 +258,8 @@
             this.ClientSize = new System.Drawing.Size(684, 336);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.button_GetQuote);
-            this.Controls.Add(this.comboBox_Delivery);
-            this.Controls.Add(this.label_Delivery);
+            this.Controls.Add(this.comboBox_DeliveryType);
+            this.Controls.Add(this.label_DeliveryType);
             this.Controls.Add(this.comboBox_SurfaceMaterial);
             this.Controls.Add(this.label_SurfaceMaterial);
             this.Controls.Add(this.numericUpDown_NumberOfDrawers);
@@ -296,8 +296,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_NumberOfDrawers;
         private System.Windows.Forms.Label label_SurfaceMaterial;
         private System.Windows.Forms.ComboBox comboBox_SurfaceMaterial;
-        private System.Windows.Forms.Label label_Delivery;
-        private System.Windows.Forms.ComboBox comboBox_Delivery;
+        private System.Windows.Forms.Label label_DeliveryType;
+        private System.Windows.Forms.ComboBox comboBox_DeliveryType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button_GetQuote;
         private System.Windows.Forms.Button button_Cancel;

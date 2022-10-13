@@ -1,31 +1,48 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MegaDesk_Ebenal
 {
-    enum DeliveryType
+    public enum DeliveryType
     {
         [Description("3 Day Shipping")]
-        ThreeDay = 60,
+        ThreeDay,
         [Description("5 Day Shipping")]
-        FiveDay = 40,
+        FiveDay,
         [Description("7 Day Shipping")]
-        SevenDay = 30,
+        SevenDay,
         [Description("Standard Shipping")]
-        FourteenDay = 0
+        FourteenDay
     }
 
-    internal class DeskQuote
+    public class DeskQuote
     {
         public DateTime QuoteDate { get; set; }
         public string CustomerName { get; set; }
         public DeliveryType DeliveryType { get; set; }
         public decimal QuoteAmount { get; set; }
         public Desk Desk { get; set; }
+
+        [JsonConstructor]
+        public DeskQuote(
+            string customerName,
+            DeliveryType deliveryType,
+            Desk desk,
+            decimal quoteAmount,
+            DateTime quoteDate)
+        {
+            QuoteDate = quoteDate;
+            CustomerName = customerName;
+            DeliveryType = deliveryType;
+            QuoteAmount = quoteAmount;
+            Desk = desk;
+        }
 
         public DeskQuote(
             string customerName,
@@ -41,7 +58,31 @@ namespace MegaDesk_Ebenal
 
         public decimal GetQuotePrice()
         {
-            return 0;
+            if (!File.Exists(@"./rushOrderPrices.txt"))
+            {
+                return 0;
+            }
+
+            //List<List<decimal>> rushPrices = File.ReadAllLines(@"./rushOrderPrices.txt").Select((str, index) => new { index, number = decimal.Parse(str) }).ToLookup(_ => _.index / 3, _ => _.number).Select(_ => _.ToList()).ToList();
+            List<(int index, string value)> fileLines = File.ReadAllLines(@"./rushOrderPrices.txt")
+                .Select((value, index) => ( index, value )).ToList();
+            List<List<decimal>> rushPrices =
+                (from price in fileLines
+                 group decimal.Parse(price.value)
+                 by price.index / 3
+                 into prices
+                 select prices
+                 .ToList())
+                 .ToList();
+
+            decimal totalPrice = 200 
+                + Desk.NumberOfDrawers * 50 
+                + (Desk.GetArea() > 1000 ? Desk.GetArea() - 1000 : 0)
+                + (int)Desk.DeskMaterial;
+
+            int idx = (int)Desk.GetArea() % 1000;
+            totalPrice += (int)DeliveryType <= 2 ? rushPrices[(int)DeliveryType][idx <= 2 ? idx : 2] : 0;
+            return totalPrice;
         }
 
         public string[] Stringify()

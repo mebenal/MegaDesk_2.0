@@ -26,7 +26,7 @@ namespace MegaDesk_2_0.Classes
         {
             if (!File.Exists(@"./quotes.json"))
             {
-                File.Create(@"./quotes.json");
+                File.Create(@"./quotes.json").Close();
             }
             return JsonConvert.DeserializeObject<List<DeskQuote>>(File.ReadAllText(@"./quotes.json"));
         }
